@@ -1,15 +1,16 @@
 # Credit Risk Model 
 
-Credit Risk Modelling and Threshold Analysis
+# Credit Risk Modelling and Threshold Analysis
 In this project, I worked with the German Credit dataset to build a credit risk model and understand how model decisions actually impact lending outcomes.
 The goal here was not just to classify borrowers as good or bad, but to see what those decisions mean once you bring in financial impact.
-What I did
+
+## What I did
 I started by loading and preparing the data.
 I encoded the target variable, split the dataset into features and labels, then split it again into training and testing sets. I also standardized the data before training the model.
 From there, I built a logistic regression model as a baseline and generated prediction probabilities.
 Instead of using the default cutoff, I set a classification threshold and used that to generate predictions. I then evaluated the model using the confusion matrix, accuracy, and classification report.
 
-Moving from accuracy to financial impact
+# Moving from accuracy to financial impact
 Before building the cost framework, I made a few simple assumptions:
 average loan = 1000
 loss = 20 percent (200) for bad loans that are approved
