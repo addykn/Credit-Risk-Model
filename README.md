@@ -18,41 +18,54 @@ no loss for correct decisions
 no loss for good loans that are rejected
 From there, I translated the confusion matrix into a cost matrix by applying these values.
 
-Step 1: Model results
+# Step 1: Model results
 Confusion Matrix + Cost Matrix
 The confusion matrix looks like this:
-Top left: 20
-Top right: 39
-Bottom left: 7
-Bottom right: 134
+
+<img width="688" height="554" alt="image" src="https://github.com/user-attachments/assets/b23ffe1f-13cb-4d01-bfb7-26be473064f9" />
+
 So:
 134 good loans were correctly approved
 20 bad loans were correctly rejected
 39 bad loans were approved → this is where the loss comes from
 7 good loans were rejected
+
+
 When I apply the financial assumptions, the cost matrix shows:
+
+<img width="676" height="545" alt="image" src="https://github.com/user-attachments/assets/8a795942-e275-400a-a38d-2391161f02f5" />
+
+
 total loss = -7800
 everything else = 0
+
 So the main takeaway here is:
 the entire financial impact is coming from those 39 bad loans that were approved
 
-Step 2: Contingency reserve
+# Step 2: Contingency reserve
 Contingency Reserve vs Threshold
+
+<img width="923" height="818" alt="image" src="https://github.com/user-attachments/assets/48c48279-4ccc-4eed-ac5b-2ccba7eb5d21" />
+
 Next, I calculated the total financial impact across a range of thresholds.
 For each threshold, I:
-generated predictions
-built the confusion matrix
-applied the value matrix
-calculated total cost
+  - generated predictions
+  - built the confusion matrix
+  - applied the value matrix
+  - calculated total cost
+  
 This allowed me to find the threshold that minimizes contingency reserve.
+
 From the plot, the optimal threshold is around 0.95.
 At this point:
-very few risky borrowers are approved
-total financial impact is minimized
+  - very few risky borrowers are approved
+  - total financial impact is minimized
 
-
-Step 3: Profit perspective
+# Step 3: Profit perspective
 Profit vs Threshold
+
+<img width="814" height="831" alt="image" src="https://github.com/user-attachments/assets/ffcbe3e5-426b-410f-9418-975e8a936518" />
+
 I also looked at the problem from a profit perspective instead of just minimizing loss.
 Here, the optimal threshold shifts to around 0.58, where profit is highest.
 This creates a clear trade-off:
@@ -64,7 +77,9 @@ If the goal is risk control  =  higher threshold
 If the goal is growth / profit = lower threshold
 So the decision really depends on what you’re optimizing for.
 
-Model comparison
+
+
+# Model comparison
 To extend the analysis, I also tested:
 Random Forest
 XGBoost
@@ -72,7 +87,7 @@ Neural Network
 One thing I noticed is that some models perform well only in a narrow range of thresholds, while others are more stable.
 In practice, I would choose the model that performs consistently, not just the one with the highest peak performance.
 
-Final takeaway
+# Final takeaway
 The main takeaway for me is that accuracy alone doesn’t mean much.
 Once you introduce financial impact:
 the threshold becomes just as important as the model
